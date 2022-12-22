@@ -7,7 +7,6 @@
     <list default="true" id="f18a5aa3-900c-4cd9-88f5-049a684a8333" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ToDoList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToDoList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,7 @@
       <updated>1671463754122</updated>
       <workItem from="1671463755740" duration="2504000" />
       <workItem from="1671627854408" duration="4815000" />
-      <workItem from="1671712532446" duration="988000" />
+      <workItem from="1671712532446" duration="1678000" />
     </task>
     <servers />
   </component>
