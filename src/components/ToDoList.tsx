@@ -15,7 +15,6 @@ const ToDoList = () => {
         { id: 3, title: 'todo3', completed: true },
         { id: 4, title: 'todo4', completed: false },
         { id: 5, title: 'todo5', completed: false },
-        { id: 6, title: 'todo6', completed: false },
     ]
     return (
         <Container maxWidth="xs">
