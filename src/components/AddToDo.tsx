@@ -12,7 +12,10 @@ const AddToDo = () => {
     const handleSubmit = useCallback(
         (event: any) => {
             event.preventDefault()
-            dispatch(addTodo(title))
+            if (title) {
+                dispatch(addTodo(title))
+                setTitle('')
+            }
         },
         [title, dispatch]
     )

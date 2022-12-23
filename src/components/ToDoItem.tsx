@@ -1,20 +1,26 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import { IToDo } from '../interfaces/Todo'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import { Checkbox } from '@material-ui/core'
+import { Checkbox, IconButton } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../redux/store'
-import { toggleTodoStatus } from '../redux/todoSlice'
+import DeleteIcon from '@material-ui/icons/Delete'
+import { deleteTodo, toggleTodoStatus } from '../redux/todoSlice'
 
 interface IToDoItemProps extends IToDo {}
 
 export const ToDoItem: FC<IToDoItemProps> = ({ id, completed, title }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const handleChangeStatus = () => {
+    const handleChangeStatus = useCallback(() => {
         dispatch(toggleTodoStatus({ completed: !completed, id }))
-    }
+    }, [dispatch, completed, id])
+
+    const handleDelete = useCallback(() => {
+        dispatch(deleteTodo(id))
+    }, [dispatch, id])
+
     return (
         <ListItem key={id}>
             <ListItemText
@@ -25,6 +31,9 @@ export const ToDoItem: FC<IToDoItemProps> = ({ id, completed, title }) => {
                 {title}
             </ListItemText>
             <ListItemSecondaryAction>
+                <IconButton onClick={handleDelete}>
+                    <DeleteIcon />
+                </IconButton>
                 <Checkbox edge="start" value={completed} onChange={handleChangeStatus} />
             </ListItemSecondaryAction>
         </ListItem>
