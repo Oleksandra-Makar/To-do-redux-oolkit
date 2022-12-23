@@ -17,18 +17,10 @@ const ToDoList = () => {
         { id: 5, title: 'todo5', completed: false },
     ]
     return (
-        <Container maxWidth="xs">
+        <>
             <Typography style={{ textAlign: 'center' }} variant="h3">
                 Redux List App
             </Typography>
-            <TextField
-                variant="outlined"
-                label="To Do Item"
-                fullWidth
-                onChange={(e) => setTodoDescription(e.target.value)}
-                value={todoDescription}
-            />
-
             <List>
                 {todos.map((todo) => (
                     <ToDoItem
@@ -39,7 +31,7 @@ const ToDoList = () => {
                     />
                 ))}
             </List>
-        </Container>
+        </>
     )
 }
 
