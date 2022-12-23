@@ -1,10 +1,10 @@
 import List from '@material-ui/core/List'
 import ToDoItem from './ToDoItem'
 import { useSelector } from 'react-redux'
-import { RootState } from '../redux/store'
+import { todosSelector } from '../selectors'
 
 const ToDoList = () => {
-    const todos = useSelector((state: RootState) => state.todos)
+    const todos = useSelector(todosSelector)
 
     return (
         <List>
