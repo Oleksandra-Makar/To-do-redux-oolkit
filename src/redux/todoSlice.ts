@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IToDo } from '../interfaces/Todo'
+import { v4 as uuidv4 } from 'uuid'
 
 const initialState: IToDo[] = [
-    { id: 1, title: 'todo1', completed: false },
-    { id: 2, title: 'todo2', completed: false },
-    { id: 3, title: 'todo3', completed: false },
-    { id: 4, title: 'todo4', completed: false },
+    { id: '1', title: 'todo1', completed: false },
+    { id: '2', title: 'todo2', completed: false },
+    { id: '3', title: 'todo3', completed: false },
+    { id: '4', title: 'todo4', completed: false },
 ]
 
 const todoSlice = createSlice({
@@ -14,7 +15,7 @@ const todoSlice = createSlice({
     reducers: {
         addTodo: (state, { payload }: PayloadAction<string>) => {
             const newTodo = {
-                id: Date.now(),
+                id: uuidv4(),
                 title: payload,
                 completed: false,
             }
@@ -25,7 +26,7 @@ const todoSlice = createSlice({
 
             state[index].completed = payload.completed
         },
-        deleteTodo: (state, { payload }: PayloadAction<number>) => {
+        deleteTodo: (state, { payload }: PayloadAction<string>) => {
             return state.filter((todo) => todo.id !== payload)
         },
     },
