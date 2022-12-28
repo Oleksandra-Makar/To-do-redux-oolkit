@@ -1,36 +1,38 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { observable, makeAutoObservable, action } from 'mobx'
 import { IToDo } from '../interfaces/Todo'
 import { v4 as uuidv4 } from 'uuid'
 
-const initialState: IToDo[] = [
+/*const initialState: IToDo[] = [
     { id: '1', title: 'todo1', completed: false },
     { id: '2', title: 'todo2', completed: false },
     { id: '3', title: 'todo3', completed: false },
     { id: '4', title: 'todo4', completed: false },
-]
+]*/
 
-const todoSlice = createSlice({
-    name: 'todos',
-    initialState,
-    reducers: {
-        addTodo: (state, { payload }: PayloadAction<string>) => {
-            const newTodo = {
-                id: uuidv4(),
-                title: payload,
-                completed: false,
-            }
-            state.push(newTodo)
-        },
-        toggleTodoStatus: (state, { payload }: PayloadAction<Omit<IToDo, 'title'>>) => {
-            const index = state.findIndex((todo) => todo.id === payload.id)
+export class todoStore {
+    @observable todos: IToDo[] = []
 
-            state[index].completed = payload.completed
-        },
-        deleteTodo: (state, { payload }: PayloadAction<string>) => {
-            return state.filter((todo) => todo.id !== payload)
-        },
-    },
-})
+    constructor() {
+        makeAutoObservable(this)
+    }
 
-export const { addTodo, toggleTodoStatus, deleteTodo } = todoSlice.actions
-export default todoSlice.reducer
+    @action
+    addTodo(task: string) {
+        this.todos.push({
+            id: uuidv4(),
+            title: task,
+            completed: false,
+        })
+    }
+
+    @action
+    toggleTodoStatus(Todo: IToDo) {
+        const index = this.todos.findIndex((todo) => todo.id === Todo.id)
+        this.todos[index].completed = Todo.completed
+    }
+
+    @action
+    deleteTodo(id: string) {
+        this.todos.filter((todo) => todo.id !== id)
+    }
+}
